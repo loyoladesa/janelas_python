@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../ApoioSisgp-master/.idea/ApoioSisgp-master.iml" filepath="$PROJECT_DIR$/../ApoioSisgp-master/.idea/ApoioSisgp-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/../ApoioSisgp-master-2/.idea/ApoioSisgp-master-2.iml" filepath="$PROJECT_DIR$/../ApoioSisgp-master-2/.idea/ApoioSisgp-master-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ArmazenadorJogosMegaSena/.idea/ArmazenadorJogosMegaSena.iml" filepath="$PROJECT_DIR$/../ArmazenadorJogosMegaSena/.idea/ArmazenadorJogosMegaSena.iml" />
       <module fileurl="file://$PROJECT_DIR$/../janelas_python/.idea/janelas_python.iml" filepath="$PROJECT_DIR$/../janelas_python/.idea/janelas_python.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/rnp_pesquisa.iml" filepath="$PROJECT_DIR$/.idea/rnp_pesquisa.iml" />
       <module fileurl="file://$PROJECT_DIR$/../tk_notepad/.idea/tk_notepad.iml" filepath="$PROJECT_DIR$/../tk_notepad/.idea/tk_notepad.iml" />
