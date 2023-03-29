@@ -114,7 +114,7 @@ class Controller:
 if __name__ == '__main__':
 
     sorteio = model.Sorteio(2532, ['28', '36', '39', '44', '56', '60'])
-    visao = vis.Visao("MegaSena")
+    visao = vis.Visao("MegaSena - Verificador")
 
     controller = Controller(sorteio,visao)
     visao.set_controller(controller)
