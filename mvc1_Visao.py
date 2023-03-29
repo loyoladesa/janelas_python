@@ -162,31 +162,38 @@ class Visao():
         dezena6_entry = ttk.Entry(filewin, textvariable=dezena6, width=4)
         dezena6_entry.grid(row=1, column=6, sticky=tk.NSEW)
 
-        numeros_sorteados = []
-        numeros_sorteados.append(dezena1.get())
-        numeros_sorteados.append(dezena2.get())
-        numeros_sorteados.append(dezena3.get())
-        numeros_sorteados.append(dezena4.get())
-        numeros_sorteados.append(dezena5.get())
-        numeros_sorteados.append(dezena6.get())
 
-        print(numeros_sorteados)
+
+
 
         # save button
-        save_button = ttk.Button(filewin, text='Save', command=lambda: self.save_button_clicked(numero_sorteio.get(),dezena1.get(),filewin))
+        save_button = ttk.Button(filewin, text='Save', command=lambda: self.save_button_clicked(numero_sorteio.get(),dezena1.get(),dezena2.get(),
+                                                                                                dezena3.get(),
+                                                                                                dezena4.get(),
+                                                                                                dezena5.get(),
+                                                                                                dezena6.get(),
+                                                                                                filewin))
         save_button.grid(row=2, column=0, padx=10)
 
 
         self.center(filewin)
 
-    def save_button_clicked(self,numeroSorteio,numerosSorteados,filewin):
+    def save_button_clicked(self,numeroSorteio,dezena1,dezena2,dezena3,dezena4,dezena5,dezena6,filewin):
         """
         Handle button click event
         :return:
         """
 
-        #filewin.
+        numeros_sorteados = []
+        numeros_sorteados.append(dezena1)
+        numeros_sorteados.append(dezena2)
+        numeros_sorteados.append(dezena3)
+        numeros_sorteados.append(dezena4)
+        numeros_sorteados.append(dezena5)
+        numeros_sorteados.append(dezena6)
+
+        print(numeros_sorteados)
 
         if self.controller:
-            self.controller.set_sorteio(numeroSorteio,numerosSorteados)
+            self.controller.set_sorteio(numeroSorteio,numeros_sorteados)
         filewin.destroy()
