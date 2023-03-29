@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import filedialog
 
 import mvc1_Modelo
 import mvc1_Controlador as control
@@ -18,13 +19,18 @@ class Visao():
         self.menubar = tk.Menu(self.janela)
         self.filemenu = tk.Menu(self.menubar, tearoff=0)
         self.filemenu.add_command(label="Novo", command=None)
-        self.filemenu.add_command(label="Abrir", command=None)
+        self.filemenu.add_command(label="Abrir", command=lambda: self.browseFiles())
         self.filemenu.add_command(label="Salvar", command=None)
         self.filemenu.add_command(label="Salvar Como", command=None)
         self.filemenu.add_separator()
 
         self.filemenu.add_command(label="Sair", command=self.janela.quit)
         self.menubar.add_cascade(label="Arquivo", menu=self.filemenu)
+
+        self.toolsmenu = tk.Menu(self.menubar, tearoff=0)
+        self.toolsmenu.add_command(label="Carregar Sorteio", command=lambda: self.funcaoCarregarSorteio())
+        self.toolsmenu.add_command(label="Verificar Resultados", command=lambda: self.verificarResultados())
+        self.menubar.add_cascade(label="Ferramentas", menu=self.toolsmenu)
 
         self.helpmenu = tk.Menu(self.menubar, tearoff=0)
         self.helpmenu.add_command(label="Índice Ajuda", command=lambda: self.funcaoAlerta(self.sobre))
@@ -36,16 +42,19 @@ class Visao():
         self.textoTopo = ttk.Label(self.janela, text="Exemplo de Janela Python")
         self.textoTopo.grid(column=0, row=0, padx=10, pady=10)
 
-        # cria o botao
-        mensagem = "Executou  a Função de Alerta"
-        self.botao = ttk.Button(self.janela, text='Carregar Sorteio', command=lambda: self.funcaoCarregarSorteio())
-        self.botao.grid(column=0, row=2, padx=10, pady=10)
-        # btn.pack(side = 'top')
+        self.textoArquivo = ttk.Label(self.janela, text="")
+        self.textoArquivo.grid(column=0, row=1, padx=10, pady=10)
+
+        self.textoResultados = ttk.Label(self.janela, text="")
+        self.textoResultados.grid(column=0, row=2, padx=10, pady=10)
+
+
 
         # cria o botao
-        mensagem2 = "Executou  a Função de Alerta 2"
-        self.botao2 = ttk.Button(self.janela, text='Exibir Mensagem 2', command=lambda: self.funcaoAlerta(mensagem2))
-        self.botao2.grid(column=1, row=2, padx=10, pady=10)
+        #mensagem = "Executou  a Função de Alerta"
+        #self.botao = ttk.Button(self.janela, text='Carregar Sorteio', command=lambda: self.funcaoCarregarSorteio())
+        #self.botao.grid(column=0, row=3, padx=10, pady=10)
+        # btn.pack(side = 'top')
 
         # set the controller
         self.controller = None
@@ -197,3 +206,34 @@ class Visao():
         if self.controller:
             self.controller.set_sorteio(numeroSorteio,numeros_sorteados)
         filewin.destroy()
+
+
+
+    def browseFiles(self):
+        filename = filedialog.askopenfilename(initialdir="/",
+                                              title="Select a File",
+                                              filetypes=(("Text files",
+                                                          "*.txt*"),
+                                                         ("all files",
+                                                          "*.*")))
+
+        self.set_arquivo(filename)
+        if self.controller:
+            self.controller.set_jogos(filename)
+
+    def set_arquivo(self,filename):
+        self.textoArquivo['text']="Arquivo Aberto: " + filename
+
+    def set_jogos(self,numeroJogos):
+        mensagem = 'Existem ' + str(numeroJogos) + ' jogos apostados.'
+        self.textoResultados['text'] = mensagem
+
+    def verificarResultados(self):
+        if self.controller:
+            self.controller.verificarResultados()
+
+    def set_resultados(self,mensagem):
+        texto = self.textoResultados['text']
+        texto = texto + "\n"+"\n"
+        mensagem = texto + mensagem
+        self.textoResultados['text'] = mensagem
